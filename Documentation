@@ -1,0 +1,29 @@
+Dynamic Pathfinding Agent
+What it does
+Agent moves on a grid from a fixed start to a fixed goal using A* or GBFS. You can draw walls or
+generate a random maze. In dynamic mode walls randomly spawn mid-run. If one blocks the path
+the agent replans from its current position.
+A*
+f(n) = g(n) + h(n). Weighs both how far it's traveled and how far it has to go. Always finds the
+shortest path. Slower than GBFS.
+GBFS
+f(n) = h(n) only. Ignores travel cost, just chases the goal greedily. Faster but the path it finds isn't
+always the shortest.
+Heuristics
+Manhattan: |dr| + |dc|. Good fit for 4-directional grid movement. Euclidean: straight-line distance.
+Slightly less accurate on a grid but still admissible.
+Pros and Cons
+A*
+Pro: guaranteed shortest path. Con: slower, more memory, overkill on simple maps.
+GBFS
+Pro: fast, expands fewer nodes on clean maps. Con: no optimality guarantee, struggles in mazes.
+Test Cases
+A* best case
+Empty grid, open path. Few nodes expanded, goes almost straight to goal.
+A* worst case
+Dense maze, goal tucked away. Explores most of the grid before getting through.
+GBFS best case
+Open grid, nothing in the way. Reaches goal faster than A* with fewer expansions.
+GBFS worst case
+Maze where the correct path goes away from the goal first. GBFS gets pulled the wrong way, ends
+up with a longer path and more expansions than A*.
